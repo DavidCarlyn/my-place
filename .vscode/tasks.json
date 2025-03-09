@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "activate venv",
+            "command": "${workspaceFolder}\\.venv\\Scripts\\activate", // Could be any other shell command
+            "args": [""],
+            "type": "shell"
+        },
+        {
+            "label": "build windows app",
+            "command": "python", // Could be any other shell command
+            "args": [
+                "-m", "PyInstaller",
+                "--name", "my_place",
+                "main.pyw"
+            ],
+            "dependsOn":[
+                "activate venv",
+            ],
+            "type": "shell"
+        },
+        {
+            "label": "clean",
+            "command": "del my_place.spec & rd /s /q build & rd /s /q dist", // Could be any other shell command
+            "type": "shell"
+        },
+    ]
+}

@@ -1,11 +1,5 @@
-from kivy.app import App
-
-from my_place.ui.home import HomeScreen
- 
-class MyApp(App):
-    def build(self):
-        return HomeScreen()
+from my_place.ui.app import MyPlaceApp
 
 def main() -> None:
-    MyApp().run()
+    MyPlaceApp().run()
     
