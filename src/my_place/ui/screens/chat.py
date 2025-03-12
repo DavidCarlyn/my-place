@@ -3,8 +3,11 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
+from kivy.app import App
+from kivy.clock import mainthread
 
 from my_place.ui.widgets.custom import CustomBackgroundColor, CustomBorder
+from my_place.core.networking.interface import NetworkInterface
 
 
 class CustomBoxLayout(BoxLayout, CustomBackgroundColor, CustomBorder):
@@ -69,9 +72,14 @@ class ChatScreen(Screen):
         if message == "":
             # TODO give  the user some type of feedback
             return 
+        
+        network : NetworkInterface = App.get_running_app().network
+        if network:
+            network.send(message)
         self.input_text_box.text = ""
         self.add_chat_item(message)
         
+    @mainthread
     def add_chat_item(self, message):
         chat_item = CustomBoxLayout(orientation="horizontal", size_hint_max_y=30, background_color=(1, 0, 0, 1))
         message_label = Label(text=message, halign="left", valign="center", padding=4)

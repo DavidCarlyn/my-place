@@ -6,5 +6,7 @@ from my_place.ui.screens.chat import ChatScreen
 class HomeScreen(ScreenManager):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.add_widget(LoginScreen(name="login"))
-        self.add_widget(ChatScreen(name="chat"))
+        self.login_screen = LoginScreen(name="login")
+        self.chat_screen = ChatScreen(name="chat")
+        self.add_widget(self.login_screen)
+        self.add_widget(self.chat_screen)
