@@ -1,5 +1,3 @@
-from datetime import datetime
-
 class ChatNetwork:
     def __init__(self):
         self.socket = None
@@ -10,6 +8,4 @@ class ChatNetwork:
             
     def send(self, message):
         if self.socket:
-            date_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-            to_send = f"[{date_now}] {message}"
-            self.socket.send(to_send.encode())
+            self.socket.send(message.encode())
