@@ -4,13 +4,16 @@ from my_place.core.networking.server import Server
 class NetworkInterface:
     def __init__(self):
         self.network = None
+        self.username = "UNKNOWN"
             
-    def setup_client(self, address: str, port: int):
+    def setup_client(self, username: str, address: str, port: int):
+        self.username = username
         if not self.network:
             self.network = Client()
             self.network.connect(address=address, port=port)
         
-    def setup_server(self, port: int = None, num_connections=10):
+    def setup_server(self, username: str, port: int = None, num_connections=10):
+        self.username = username
         if not self.network:
             self.network = Server(port=port, num_connections=num_connections)
             self.network.start()
@@ -21,6 +24,7 @@ class NetworkInterface:
     def send(self, message):
         if not self.network:
             return
+        message = f"[{self.username}]: {message}"
         
         self.network.send(message)
         
