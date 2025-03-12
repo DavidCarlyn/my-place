@@ -19,7 +19,7 @@ class LoginScreen(Screen):
         # Port input
         server_port_input_layout = BoxLayout(orientation="horizontal")
         server_port_input_lbl = Label(text="Port:")
-        self.server_port_text_input = TextInput(multiline=False)
+        self.server_port_text_input = TextInput(text="40674", multiline=False)
         server_port_input_layout.add_widget(server_port_input_lbl)
         server_port_input_layout.add_widget(self.server_port_text_input)
         
@@ -50,7 +50,7 @@ class LoginScreen(Screen):
         # Port input
         client_port_input_layout = BoxLayout(orientation="horizontal")
         client_port_input_lbl = Label(text="Port:")
-        self.client_port_text_input = TextInput(multiline=False)
+        self.client_port_text_input = TextInput(text="40674", multiline=False)
         client_port_input_layout.add_widget(client_port_input_lbl)
         client_port_input_layout.add_widget(self.client_port_text_input)
         layout.add_widget(client_port_input_layout)
