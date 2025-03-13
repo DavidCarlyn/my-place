@@ -1,6 +1,5 @@
 import socket
 from threading import Thread
-from datetime import datetime
 
 from my_place.core.networking.chat_network import ChatNetwork
 
@@ -33,13 +32,11 @@ class Server(ChatNetwork):
                     self.remove(client) 
                     
     def _handle_message(self, message, connection, address):
-        # Calls broadcast function to send message to all 
-        message_to_send = "<" + address[0] + "> " + message
-        print(message_to_send)
+        print(message)
         for func in self.on_message_recieve_subscribers:
-            func(message_to_send)
+            func(message)
         
-        self.broadcast(message_to_send.encode(), connection) 
+        self.broadcast(message.encode(), connection) 
     
     def on_client_connect(self, connection, address): 
  

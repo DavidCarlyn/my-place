@@ -16,10 +16,17 @@ class LoginScreen(Screen):
         
         ## SERVER PART
         
+        # Username input
+        server_username_input_layout = BoxLayout(orientation="horizontal")
+        server_username_input_lbl = Label(text="Username:")
+        self.server_username_text_input = TextInput(multiline=False)
+        server_username_input_layout.add_widget(server_username_input_lbl)
+        server_username_input_layout.add_widget(self.server_username_text_input)
+        
         # Port input
         server_port_input_layout = BoxLayout(orientation="horizontal")
         server_port_input_lbl = Label(text="Port:")
-        self.server_port_text_input = TextInput(multiline=False)
+        self.server_port_text_input = TextInput(text="40674", multiline=False)
         server_port_input_layout.add_widget(server_port_input_lbl)
         server_port_input_layout.add_widget(self.server_port_text_input)
         
@@ -33,11 +40,21 @@ class LoginScreen(Screen):
         )
         self.host_server_btn.bind(on_press=self.host_server)
         
+        layout.add_widget(server_username_input_layout)
         layout.add_widget(server_port_input_layout)
         layout.add_widget(self.host_server_btn)
         
         
         ## CLIENT PART
+        
+        # Username
+        # Username input
+        client_username_input_layout = BoxLayout(orientation="horizontal")
+        client_username_input_lbl = Label(text="Username:")
+        self.client_username_text_input = TextInput(multiline=False)
+        client_username_input_layout.add_widget(client_username_input_lbl)
+        client_username_input_layout.add_widget(self.client_username_text_input)
+        layout.add_widget(client_username_input_layout)
         
         # Address input
         client_address_input_layout = BoxLayout(orientation="horizontal")
@@ -50,7 +67,7 @@ class LoginScreen(Screen):
         # Port input
         client_port_input_layout = BoxLayout(orientation="horizontal")
         client_port_input_lbl = Label(text="Port:")
-        self.client_port_text_input = TextInput(multiline=False)
+        self.client_port_text_input = TextInput(text="40674", multiline=False)
         client_port_input_layout.add_widget(client_port_input_lbl)
         client_port_input_layout.add_widget(self.client_port_text_input)
         layout.add_widget(client_port_input_layout)
@@ -71,24 +88,28 @@ class LoginScreen(Screen):
     def host_server(self, instance):
         try:
             port = int(self.server_port_text_input.text)
+            username = self.server_username_text_input.text
+            username = "UNKNOWN" if username == "" else username
         except Exception as e:
             print(e)
             return
         
         network : NetworkInterface = App.get_running_app().network
-        network.setup_server(port=port, num_connections=10)
+        network.setup_server(username=username, port=port, num_connections=10)
         self.go_to_chat_screen()
     
     def connect_to_server(self, instance):
         try:
             port = int(self.client_port_text_input.text)
             address = self.client_address_text_input.text
+            username = self.client_username_text_input.text
+            username = "UNKNOWN" if username == "" else username
         except Exception as e:
             print(e)
             return
         
         network : NetworkInterface = App.get_running_app().network
-        network.setup_client(address=address, port=port)
+        network.setup_client(username=username, address=address, port=port)
         self.go_to_chat_screen()
         
     def go_to_chat_screen(self):
