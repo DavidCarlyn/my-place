@@ -13,6 +13,7 @@
             "args": [
                 "-m", "PyInstaller",
                 "--name", "my_place",
+                "--add-data", "assets:assets",
                 "main.pyw"
             ],
             "dependsOn":[

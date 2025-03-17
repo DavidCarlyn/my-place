@@ -9,7 +9,6 @@ class MyPlaceApp(App):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.icon = str(get_asset_path("app_icon.png"))
-        print(self.icon)
         self.network = NetworkInterface()
         self.screen_manager = None
             
