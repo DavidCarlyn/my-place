@@ -6,11 +6,13 @@ from kivy.uix.textinput import TextInput
 from kivy.app import App
 
 from my_place.core.networking.interface import NetworkInterface
+from my_place.ui.widgets.custom import ColoredBoxLayout
+from my_place.ui.widgets.navigation import BackButton
 
 class ServerLoginScreen(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
-        layout = BoxLayout(
+        layout = ColoredBoxLayout(
             orientation="vertical",
             size_hint=[0.7, 0.5],
             pos_hint={"center_x": 0.5, "center_y": 0.5},
@@ -22,15 +24,15 @@ class ServerLoginScreen(Screen):
         
         # Username input
         server_username_input_layout = BoxLayout(orientation="horizontal")
-        server_username_input_lbl = Label(text="Username:")
-        self.server_username_text_input = TextInput(multiline=False)
+        server_username_input_lbl = Label(text="Username:", color="black")
+        self.server_username_text_input = TextInput(multiline=False, halign="center")
         server_username_input_layout.add_widget(server_username_input_lbl)
         server_username_input_layout.add_widget(self.server_username_text_input)
         
         # Port input
         server_port_input_layout = BoxLayout(orientation="horizontal")
-        server_port_input_lbl = Label(text="Port:")
-        self.server_port_text_input = TextInput(text="40674", multiline=False)
+        server_port_input_lbl = Label(text="Port:", color="black")
+        self.server_port_text_input = TextInput(text="40674", multiline=False, halign="center")
         server_port_input_layout.add_widget(server_port_input_lbl)
         server_port_input_layout.add_widget(self.server_port_text_input)
         
@@ -47,7 +49,12 @@ class ServerLoginScreen(Screen):
         layout.add_widget(server_port_input_layout)
         layout.add_widget(self.host_server_btn)
         
+        # Add layout to screen
         self.add_widget(layout)
+        
+        # Back Button
+        bbtn = BackButton(screen_name="login")
+        self.add_widget(bbtn)
         
     def host_server(self, instance):
         try:

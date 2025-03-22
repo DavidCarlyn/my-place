@@ -44,7 +44,9 @@ class LoginScreen(Screen):
     def go_to_server_login_screen(self, instance):
         app = App.get_running_app()
         app.root.current = "server-login"
+        self.manager.transition.direction = "left"
         
     def go_to_client_login_screen(self, instance):
         app = App.get_running_app()
         app.root.current = "client-login"
+        self.manager.transition.direction = "left"
