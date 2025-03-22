@@ -11,7 +11,11 @@ class ClientLoginScreen(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
         layout = BoxLayout(
-            orientation="vertical"
+            orientation="vertical",
+            size_hint=[0.7, 0.5],
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            padding=5,
+            spacing=10,
         )
         
         ## CLIENT PART
@@ -44,7 +48,6 @@ class ClientLoginScreen(Screen):
         self.connect_to_server_btn = Button(
             background_color=(54/255, 109/255, 59/255, 1),
             background_normal="",
-            size_hint=(.3, .3),
             text = "Connect to Server",
             font_size=24,
         )
