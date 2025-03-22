@@ -7,6 +7,7 @@ from kivy.app import App
 
 from my_place.core.networking.interface import NetworkInterface
 from my_place.ui.widgets.custom import ColoredBoxLayout
+from my_place.ui.widgets.navigation import BackButton
 
 class ServerLoginScreen(Screen):
     def __init__(self, **kw):
@@ -48,7 +49,12 @@ class ServerLoginScreen(Screen):
         layout.add_widget(server_port_input_layout)
         layout.add_widget(self.host_server_btn)
         
+        # Add layout to screen
         self.add_widget(layout)
+        
+        # Back Button
+        bbtn = BackButton(screen_name="login")
+        self.add_widget(bbtn)
         
     def host_server(self, instance):
         try:
