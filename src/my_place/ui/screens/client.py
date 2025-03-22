@@ -6,11 +6,12 @@ from kivy.uix.textinput import TextInput
 from kivy.app import App
 
 from my_place.core.networking.interface import NetworkInterface
+from my_place.ui.widgets.custom import ColoredBoxLayout
 
 class ClientLoginScreen(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
-        layout = BoxLayout(
+        layout = ColoredBoxLayout(
             orientation="vertical",
             size_hint=[0.7, 0.5],
             pos_hint={"center_x": 0.5, "center_y": 0.5},
@@ -22,24 +23,24 @@ class ClientLoginScreen(Screen):
         
         # Username input
         client_username_input_layout = BoxLayout(orientation="horizontal")
-        client_username_input_lbl = Label(text="Username:")
-        self.client_username_text_input = TextInput(multiline=False)
+        client_username_input_lbl = Label(text="Username:", color="black")
+        self.client_username_text_input = TextInput(multiline=False, halign="center")
         client_username_input_layout.add_widget(client_username_input_lbl)
         client_username_input_layout.add_widget(self.client_username_text_input)
         layout.add_widget(client_username_input_layout)
         
         # Address input
         client_address_input_layout = BoxLayout(orientation="horizontal")
-        client_address_input_lbl = Label(text="Network Address (IP):")
-        self.client_address_text_input = TextInput(multiline=False)
+        client_address_input_lbl = Label(text="Network Address (IP):", color="black")
+        self.client_address_text_input = TextInput(multiline=False, halign="center")
         client_address_input_layout.add_widget(client_address_input_lbl)
         client_address_input_layout.add_widget(self.client_address_text_input)
         layout.add_widget(client_address_input_layout)
         
         # Port input
         client_port_input_layout = BoxLayout(orientation="horizontal")
-        client_port_input_lbl = Label(text="Port:")
-        self.client_port_text_input = TextInput(text="40674", multiline=False)
+        client_port_input_lbl = Label(text="Port:", color="black")
+        self.client_port_text_input = TextInput(text="40674", multiline=False, halign="center")
         client_port_input_layout.add_widget(client_port_input_lbl)
         client_port_input_layout.add_widget(self.client_port_text_input)
         layout.add_widget(client_port_input_layout)

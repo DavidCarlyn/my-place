@@ -1,3 +1,4 @@
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 from kivy.graphics import Color, Rectangle, Line
 from kivy.properties import ColorProperty
@@ -42,3 +43,7 @@ class CustomBackgroundColor(Widget):
     def _update_rect(self, instance, value):
         self.rect.pos = instance.pos
         self.rect.size = instance.size
+        
+class ColoredBoxLayout(CustomBackgroundColor, BoxLayout):
+    def __init__(self, **kw):
+        super().__init__(**kw)
